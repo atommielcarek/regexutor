@@ -117,10 +117,61 @@ The output would be CO2.
 
 ### The OR Operator
 
+Alternation is the term in Regular Expression that is actually a simple “OR”. The syntax is denoted with a vertical line characer "|". 
+
+Lets say we needed to find programming languages: HTML, PHP, Java or JavaScript. The corresponding RegEx would be: html|css|java(script)
+
+```js
+let regexp = /html|php|css|java(script)?/gi;
+
+let str = "First HTML appeared, then CSS, then JavaScript";
+
+alert( str.match(regexp) ); 
+```
+The output would be 'HTML', 'CSS', 'JavaScript'
+
 ### Flags
+
+Flags are optional parameters that we can add to a plain expression to make it search in a different way. Each flag is denoted by a single alphabetic character, and serves different purposes in modifying the expression's searching behaviour.
+
+#### Flags used in RegEx
+
+- i (Ignore Casing) Makes the expression search case-insensitively.
+- g (Global) Makes the expression search for all occurences.
+- s (Dot All) Makes the wild character . match newlines as well.
+- m (Multiline) Makes the boundary characters ^ and $ match the beginning and ending of every single line instead of the beginning and ending of the whole string.
+- y (Sticky) Makes the expression start its searching from the index indicated in its lastIndex property.
+- u (Unicode) Makes the expression assume individual characters as code points, not code units, and thus match 32-bit characters as well.
+
+```js
+console.log(/foo/ig.flags);
+// expected output: "gi"
+
+console.log(/bar/myu.flags);
+// expected output: "muy"
+```
 
 ### Character Escapes
 
+The backslash in a regular expression precedes a literal character. You also escape certain letters that represent common character classes, such as \w for a word character or \s for a space.
+
+```js
+Regex(
+
+    "Are you there, Adam?, asked Kevin.", // source
+
+    "(here|there).+(\w+).+(said|asked) (\s) (\w+)\."); // regular expression
+
+    "there, Adam?, asked Kevin."
+)
+```
+* (here|there).+ - Matches “there”, a comma, and a space.
+* (\w+) - Matches "Adam".
+* .+ - Matches “?, “.
+* (said|asked)(\s) - Matches “asked” followed by a space. Without the space, the match would end here; “asked” is followed by a space in the source string.
+* (\w+)\. - Matches “Kevin” and a period.
+
+
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+My name is Adam Mielcarek, I am currently and will forever be learning as much as I can about software engineering and web development and I am always working on new projects and applications. If you have any potential opportunities for collaboration or have any concepts for future projects please feel free to contact me and please take a look at my past projects on GitHub. https://github.com/atommielcarek 
