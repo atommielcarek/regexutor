@@ -73,11 +73,47 @@ The output would be ["11", "2021"].
 
 ### Grouping Constructs
 
+Grouping Constructs can be used many ways to delineate subexpressions of a regular expression and capture substrings of an input string.
 
+* Match a subexpression that is repeated in the input string.
+* Apply a quantifier to a subexpression that has multiple regular expression language elements.
+* Include a subexpression in the string that is returned by the Regex.Replace and Match.Result methods.
+* Retrieve individual subexpressions from the Match.Groups property and process them separately from the matched text as a whole.
+
+Only parentheses can be used for grouping. Square brackets define a character class, and curly braces are used by a quantifier with specific limits.
 
 ### Bracket Expressions
 
+Brackets indicate a set of characters to match. Any individual character between the brackets will match, and you can also use a hyphen to define a set.
+
+```js
+'elephant'.match(/[abcd]/) // -> matches 'a'
+```
+You will often see ranges of the alphabet or all numerals. [A-Za-z] [0-9] Remember that these character sets are case sensitive, unless you set the i flag.
+
+```js
+'elephant'.match(/[a-d]/) // -> matches 'a'
+'elephant'.match(/[A-D]/) // -> no match
+'elephant'.match(/[A-D]/i) // -> matches 'a'
+```
+
 ### Character Classes
+
+A character class allows you to match any symbol from a certain character set. A character class is also called a character set. 
+
+The most commonly used character classes are:
+
+- \d – match a digit or a character from 0 to 9.
+- \s – match a whitespace symbol such a space, a tab (\t), a newline (\n), etc.
+- \w – w stands for word character. It matches the ASCII character [A-Za-z0-9_] including Latin alphabets, digits, and the underscore (_).
+
+```js
+let str = 'CO2 is carbon dioxide';
+let re = /\w\d/g
+
+console.log(str.match(re));
+```
+The output would be CO2.
 
 ### The OR Operator
 
